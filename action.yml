@@ -23,4 +23,3 @@ runs:
   args:
     - "--policy-file=${{ inputs.policy-file }}"
     - "${{ inputs.action }}"
-    - "--network host"
