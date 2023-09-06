@@ -1,6 +1,7 @@
 FROM golang:1.18.4-alpine3.16 AS build
 
-RUN apk update && \
+RUN cat /etc/resolv.conf && \
+    apk update && \
     apk add git && \
     go install tailscale.com/cmd/gitops-pusher@gitops-1.30.0
 
