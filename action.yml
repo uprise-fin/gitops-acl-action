@@ -21,5 +21,5 @@ runs:
     TS_API_KEY: "${{ inputs.api-key }}"
     TS_TAILNET: "${{ inputs.tailnet }}"
   args:
-    - "--network=host --policy-file=${{ inputs.policy-file }}"
+    - "--policy-file=${{ inputs.policy-file }}"
     - "${{ inputs.action }}"
