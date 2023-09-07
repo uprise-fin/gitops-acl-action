@@ -23,6 +23,11 @@ on:
 jobs:
   sync-acls:
     runs-on: ubuntu-latest
+    env:
+      TS_API_KEY: ${{ github.event.inputs.api-key || 'default_API_key' }}
+      TS_TAILNET: ${{ github.event.inputs.tailnet || 'default_tailnet' }}
+      POLICY_FILE: ${{ github.event.inputs.policy-file || './policy.hujson' }}
+      ACTION: ${{ github.event.inputs.action || 'default_action' }}
 
     steps:
       - name: Checkout code
@@ -37,8 +42,8 @@ jobs:
       - name: Run Docker container
         run: |
           docker run \
-            -e TS_API_KEY=${{ github.event.inputs.api-key }} \
-            -e TS_TAILNET=${{ github.event.inputs.tailnet }} \
+            -e TS_API_KEY=${TS_API_KEY} \
+            -e TS_TAILNET=${TS_TAILNET} \
             my-tailscale-image \
-            --policy-file=${{ github.event.inputs.policy-file }} \
-            ${{ github.event.inputs.action }}
+            --policy-file=${POLICY_FILE} \
+            ${ACTION}
